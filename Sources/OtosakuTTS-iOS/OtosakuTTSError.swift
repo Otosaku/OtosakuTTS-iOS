@@ -14,7 +14,8 @@ public enum OtosakuTTSError: LocalizedError {
     case invalidTokensFile
     case invalidDictionaryFile
     case emptyInput
-    
+    case inputTooLong(Int)
+
     public var errorDescription: String? {
         switch self {
         case .modelLoadingFailed(let model):
@@ -33,6 +34,8 @@ public enum OtosakuTTSError: LocalizedError {
             return "Invalid or missing dictionary file"
         case .emptyInput:
             return "Input text is empty"
+        case .inputTooLong(let length):
+            return "Input text is too long (\(length) tokens). Single sentence must be within 240 tokens."
         }
     }
 }
